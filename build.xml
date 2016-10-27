@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="HotelManagement" default="main" basedir=".">
+
+<target name="clean" >
+	<delete dir="${build.dir}"/>
+	<delete dir="report"/>
+	<echo> Clean executed................ </echo>
+</target>
+	 <target name="compile" depends="clean">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src" destdir="build/classes"/>
+		<echo> Compile executed................ </echo>
+	</target>
+	<!--<target name="unittest" depends="compile">
+		<mkdir dir="report"/>
+		<junit haltonfailure="no" fork="yes" printsummary="true">
+			<classpath path="build/classes"></classpath>
+			<test name="test.MyTestCases" todir="report" />
+			<formatter type="xml"/>
+			</junit>
+		<echo> unit test done.... XML report created... </echo>
+		</target>
+	<target name="testreport" depends="unittest">
+	<mkdir dir="report/html"/>
+	 <junitreport todir="report">
+		<fileset dir="report">
+		<include name="TEST-*.xml"/>
+		</fileset>
+		<report format="noframes" todir="report/html"/>
+	 </junitreport>
+		<echo>HTML report generated...</echo>
+	</target> -->
+		
+		
+</project>

@@ -1,0 +1,2 @@
+2016-10-27 14:12:36 INFO  DAO.ConnectionDAO:17 - hello
+2016-10-27 14:20:44 INFO  DAO.ConnectionDAO:17 - You are in ConnectionDAO
