@@ -1,0 +1,52 @@
+CREATE TABLE guest_details (
+  ID           NUMBER(5)    NOT NULL,
+  NAME  VARCHAR2(50)  NOT NULL,
+  ADDRESS VARCHAR2(50) NOT NULL,
+  CONTACT NUMBER(10)    NOT NULL,
+   CONSTRAINT guest_pk PRIMARY KEY (ID));
+
+
+CREATE SEQUENCE guest_seq START WITH 1;
+
+
+CREATE OR REPLACE TRIGGER guest_trig 
+BEFORE INSERT ON guest_details 
+FOR EACH ROW
+
+BEGIN
+  SELECT guest_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+/
+
+
+CREATE TABLE room_details (
+  roomno number(5)  NOT NULL,
+  type VARCHAR2(20) NOT NULL,
+  Availability VARCHAR(1) NOT NULL,
+  Price number(5) NOT NULL,
+  CONSTRAINT room_pk PRIMARY KEY (roomno));
+
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(101,'deluxe','y',1500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(102,'deluxe','y',1500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(201,'super deluxe','y',2500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(202,'super deluxe','y',2500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(301,'executive','y',3500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(302,'executive','y',3500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(401,'suite','y',4500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(402,'suite','y',4500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(501,'villa','y',5500);
+INSERT INTO room_details (roomno,type,Availability,Price) VALUES(502,'villa','y',5500);
+
+
+CREATE TABLE accomodation (
+roomno number(5) NOT NULL,
+ID number(5) NOT NULL,
+checkInDAte varchar2(10),
+duration number(5),
+CONSTRAINT accomodation_pk PRIMARY KEY (roomno,ID),
+CONSTRAINT room_details_fk FOREIGN KEY(roomno) REFERENCES room(roomno),
+CONSTRAINT guest_details_fk FOREIGN KEY(ID) REFERENCES guest_details(ID));
+
+
